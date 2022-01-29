@@ -28,6 +28,6 @@ legend{padding:0 10px;}
 .stop{background-image:url(img/stop.png);background-repeat:no-repeat;width:32px;height:32px;margin-right:12px;border:1px solid #3a3a3a;box-sizing:content-box;box-shadow:0 3px 5px 0 rgba(0,0,0,0.4);border-radius:5%;}
 .stop:active{box-shadow:inset 0 0 5px 0 rgba(0,0,0,0.4);}
 #playlist{list-style:none;margin:0;padding-left:0;display:flex;}
-#playlist li{margin-left:4px;width:34px;height:34px;border:1px solid #3a3a3a;color:rgba(1,22,39,0.75);box-shadow:0 3px 5px 0 rgba(0,0,0,0.4);border-radius:5%;padding:0 10px;display:flex;align-items:center;justify-content:center;}
+#playlist li{margin-left:4px;width:34px;height:34px;border:1px solid #3a3a3a;color:rgba(1,22,39,0.75);box-shadow:0 3px 5px 0 rgba(0,0,0,0.4);border-radius:5%;padding:0 10px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 #playlist li:active{box-shadow:inset 0 0 5px 0 rgba(0,0,0,0.4);}
 .current{box-shadow:inset 0 0 5px 0 rgba(0,0,0,0.4)!important;font-weight:bold;}
