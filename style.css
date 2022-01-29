@@ -200,6 +200,9 @@ legend {
   border-radius: 5%;
   box-sizing: content-box;
   display: flex;
+  /*IE11*/
+  flex-grow: 1;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;
