@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Радиостанция Venice Classic Radio Italia</title>
+  <meta name="description" content="Классическая музыка.">
+  <meta name="author" content="Игорь Постольный">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Радиостанция Venice Classic Radio Italia" />
+  <meta property="og:description" content="Классическая музыка." />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <main>
+    <fieldset>
+      <legend>Радиостанция Venice Classic Radio Italia</legend>
+      <audio preload="none" id="player" src="https://uk2.streamingpulse.com/ssl/vcr1" type="audio/mpeg"></audio>
+      <div class="controls">
+        <div>
+          <a href="#" class="stop"></a>
+        </div>
+        <div id="range">
+          <input id="volumeSlider" type="range" min="0" max="1" step="0.1" value="0.3" />
+        </div>
+        <ul id="playlist">
+          <li data-src="https://uk2.streamingpulse.com/ssl/vcr1" data-url="https://www.veniceclassicradio.eu/live1/nowplaying.xml">1</li>
+          <li data-src="https://uk2.streamingpulse.com/ssl/vcr2" data-url="https://www.veniceclassicradio.eu/live2/nowplaying.xml">2</li>
+        </ul>
+        <div id="btns-left">
+          <a href="#" class="btn-info"></a>
+          <a href="https://github.com/postolny/venice-classic-radio-2" class="btn-github" target="_blank"></a>
+        </div>
+      </div>
+    </fieldset>
+    <div id="pl">
+      <fieldset>
+        <legend>Текущий трек</legend>
+        <div>
+          <label>Композитор:</label>
+          <span id="art">Загрузка...</span>
+        </div>
+        <div>
+          <label>Сочинение:</label>
+          <span id="tit">Загрузка...</span>
+        </div>
+        <div>
+          <label>Части:</label>
+          <span id="mov">Загрузка...</span>
+        </div>
+        <div>
+          <label>Исполнители:</label>
+          <span id="int">Загрузка...</span>
+        </div>
+        <div>
+          <label>Продолжительность:</label>
+          <span id="dur">Загрузка...</span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Следующий трек</legend>
+        <div>
+          <label>Композитор:</label>
+          <span id="art-next">Загрузка...</span>
+        </div>
+        <div>
+          <label>Сочинение:</label>
+          <span id="tit-next">Загрузка...</span>
+        </div>
+        <div>
+          <label>Части:</label>
+          <span id="mov-next">Загрузка...</span>
+        </div>
+        <div>
+          <label>Исполнители:</label>
+          <span id="int-next">Загрузка...</span>
+        </div>
+        <div>
+          <label>Продолжительность:</label>
+          <span id="dur-next">Загрузка...</span>
+        </div>
+      </fieldset>
+      <div id="info">
+        <div id="art1">Загрузка...</div>
+        <div id="tit1">Загрузка...</div>
+      </div>
+    </div>
+    <p>Это второй вариант радиоплеера. Первый вариант находится по <a href="https://postolny.github.io/venice-classic-radio/">этому адресу</a>.</p>
+  </main>
+</body>
+
+</html>
