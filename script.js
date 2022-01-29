@@ -1,5 +1,5 @@
 $(function() {
-  let audio = $("#player")[0];
+  let audio = new Audio();
 
   $("#volumeSlider").change(function() {
     let volume = $(this).val();
