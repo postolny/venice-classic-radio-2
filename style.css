@@ -208,10 +208,6 @@ legend {
   cursor: pointer;
 }
 
-#playlist li:active {
-  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
-}
-
 .current {
   box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4) !important;
   font-weight: bold;
