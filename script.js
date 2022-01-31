@@ -32,6 +32,9 @@ $(function() {
   $(".stop").click(function(e) {
     e.preventDefault();
     audio.pause();
+    // Остановить аудиопоток
+    audio.src = audio.src;
+    audio.src = "";
     $("#pl").hide("fast");
     $(".btn-info").stop(1, 1).fadeOut();
     playlist.find(".current").removeClass("current");
