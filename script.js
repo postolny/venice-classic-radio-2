@@ -1,12 +1,13 @@
 $(function() {
-  let audio = new Audio();
+  var audio = new Audio();
+  var playlist = $("#playlist");
+  var timer;
 
   $("#volumeSlider").change(function() {
-    let volume = $(this).val();
+    var volume = $(this).val();
     audio.volume = volume;
   });
 
-  playlist = $("#playlist");
   playlist.on("click", "li", function() {
     playlist.find(".current").removeClass("current");
     $(this).addClass("current");
@@ -15,18 +16,44 @@ $(function() {
     $("#pl").show("fast");
     audio.play();
     $(".btn-info").stop(1, 1).fadeIn();
-    let auto_refresh = setInterval(function() {
-      $("#art,#art1").load(currentPlayer + " " + "#Current Artista");
-      $("#tit,#tit1").load(currentPlayer + " " + "#Current Titolo");
-      $("#mov").load(currentPlayer + " " + "#Current Movimenti");
-      $("#int").load(currentPlayer + " " + "#Current Interpreti");
-      $("#dur").load(currentPlayer + " " + "#Current Durata");
-      $("#art-next").load(currentPlayer + " " + "#Next1 Artista");
-      $("#tit-next").load(currentPlayer + " " + "#Next1 Titolo");
-      $("#mov-next").load(currentPlayer + " " + "#Next1 Movimenti");
-      $("#int-next").load(currentPlayer + " " + "#Next1 Interpreti");
-      $("#dur-next").load(currentPlayer + " " + "#Next1 Durata");
-    }, 3000);
+
+    function load() {
+      $.ajax({
+        url: currentPlayer,
+        dataType: 'xml',
+        cache: false,
+        type: 'POST',
+        error: function() {},
+        success: function(data) {
+          var xml_node = $('NowPlaying', data);
+          var compositore = xml_node.find('NP[Id="Current"] > Info > Artista').text();
+          var titolo = xml_node.find('NP[Id="Current"] > Info > Titolo').text();
+          var movimenti = xml_node.find('NP[Id="Current"] > Info > Movimenti').text();
+          var interprete = xml_node.find('NP[Id="Current"] > Info > Interpreti').text();
+          var durata = xml_node.find('NP[Id="Current"] > Info > Durata').text();
+
+          var compositore_next = xml_node.find('NP[Id="Next1"] > Info > Artista').text();
+          var titolo_next = xml_node.find('NP[Id="Next1"] > Info > Titolo').text();
+          var movimenti_next = xml_node.find('NP[Id="Next1"] > Info > Movimenti').text();
+          var interprete_next = xml_node.find('NP[Id="Next1"] > Info > Interpreti').text()
+          var durata_next = xml_node.find('NP[Id="Next1"] > Info > Durata').text();
+
+          $("#art,#art1").html(compositore);
+          $("#tit,#tit1").html(titolo);
+          $('#mov').html(movimenti);
+          $('#int').html(interprete);
+          $("#dur").html(durata);
+
+          $("#art-next").html(compositore_next);
+          $("#tit-next").html(titolo_next);
+          $('#mov-next').html(movimenti_next);
+          $('#int-next').html(interprete_next);
+          $("#dur-next").html(durata_next);
+        }
+      });
+      timer = setTimeout(load, 15000);
+    }
+    load();
   });
 
   $(".stop").click(function(e) {
