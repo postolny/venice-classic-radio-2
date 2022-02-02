@@ -69,6 +69,10 @@ legend {
   padding: 0 10px;
 }
 
+label {
+  font-weight: 700;
+}
+
 #pl {
   display: none;
 }
@@ -86,6 +90,10 @@ legend {
   align-items: center;
   width: 100%;
   max-width: 100px;
+  height: 32px;
+  border: 1px solid #3a3a3a;
+  box-sizing: content-box;
+  padding-left: 3px;
 }
 
 .controls input[type=range] {
@@ -126,7 +134,7 @@ legend {
 
 .controls input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 30px;
+  width: 20px;
   height: 8px;
   border: none;
   border-radius: 12px;
@@ -151,6 +159,14 @@ legend {
   border: 0;
   background: #1f4037;
   background: linear-gradient(to bottom, #99f2c8, #1f4037);
+}
+
+.value {
+  font-size: 10px;
+  margin-left: 2px;
+  width: 22px;
+  align-items: center;
+  display: flex;
 }
 
 #btns-left {

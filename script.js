@@ -3,9 +3,12 @@ $(function() {
   var playlist = $("#playlist");
   var timer;
 
+  $('.value').text($("#volumeSlider").val())
   $("#volumeSlider").change(function() {
     var volume = $(this).val();
     audio.volume = volume;
+    $(this).attr('value', volume);
+    $('.value').text(volume);
   });
 
   playlist.on("click", "li", function() {
