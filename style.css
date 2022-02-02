@@ -87,6 +87,8 @@ label {
 
 #range {
   display: flex;
+  /*IE11*/
+  flex: 0 0 auto;
   align-items: center;
   width: 100%;
   max-width: 100px;
@@ -205,6 +207,8 @@ label {
   margin: 0;
   padding-left: 0;
   display: flex;
+  /*IE11*/
+  flex: 0 0 auto;
 }
 
 #playlist li {
