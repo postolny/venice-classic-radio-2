@@ -8,7 +8,7 @@ $(function() {
     var volume = $(this).val();
     audio.volume = volume;
     $(this).attr("value", volume);
-    $(".value").text(volume);
+    $(".value").html(volume);
   });
 
   playlist.on("click", "li", function() {
@@ -41,17 +41,29 @@ $(function() {
           var interprete_next = xml_node.find('NP[Id="Next1"] > Info > Interpreti').text()
           var durata_next = xml_node.find('NP[Id="Next1"] > Info > Durata').text();
 
-          $("#art,#art1").html(compositore);
-          $("#tit,#tit1").html(titolo);
-          $('#mov').html(movimenti);
-          $('#int').html(interprete);
-          $("#dur").html(durata);
+          $("#art span,#art1").html(compositore);
+          $("#tit span,#tit1").html(titolo);
+          // Если переменная movimenti с указанием частей не пустая
+          if (movimenti !== "") {
+            $("#mov").css("display", "block");
+            $("#mov span").html(movimenti);
+          } else {
+            $("#mov").css("display", "none");
+          }
+          $("#int span").html(interprete);
+          $("#dur span").html(durata);
 
-          $("#art-next").html(compositore_next);
-          $("#tit-next").html(titolo_next);
-          $('#mov-next').html(movimenti_next);
-          $('#int-next').html(interprete_next);
-          $("#dur-next").html(durata_next);
+          $("#art-next span").html(compositore_next);
+          $("#tit-next span").html(titolo_next);
+          // Если переменная movimenti_next с указанием частей не пустая
+          if (movimenti_next !== "") {
+            $("#mov-next").css("display", "block");
+            $("#mov-next span").html(movimenti_next);
+          } else {
+            $("#mov-next").css("display", "none");
+          }
+          $("#int-next span").html(interprete_next);
+          $("#dur-next span").html(durata_next);
         }
       });
       timer = setTimeout(load, 15000);
