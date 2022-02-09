@@ -11,6 +11,55 @@ $(function() {
     $(".value").html(volume);
   });
 
+  function load() {
+    $.ajax({
+      url: currentPlayer,
+      dataType: 'xml',
+      cache: false,
+      type: 'POST',
+      error: function() {},
+      success: function(data) {
+        var xml_node = $('NowPlaying', data);
+        var compositore = xml_node.find('NP[Id="Current"] > Info > Artista').text();
+        var titolo = xml_node.find('NP[Id="Current"] > Info > Titolo').text();
+        var movimenti = xml_node.find('NP[Id="Current"] > Info > Movimenti').text();
+        var interprete = xml_node.find('NP[Id="Current"] > Info > Interpreti').text();
+        var durata = xml_node.find('NP[Id="Current"] > Info > Durata').text();
+
+        var compositore_next = xml_node.find('NP[Id="Next1"] > Info > Artista').text();
+        var titolo_next = xml_node.find('NP[Id="Next1"] > Info > Titolo').text();
+        var movimenti_next = xml_node.find('NP[Id="Next1"] > Info > Movimenti').text();
+        var interprete_next = xml_node.find('NP[Id="Next1"] > Info > Interpreti').text()
+        var durata_next = xml_node.find('NP[Id="Next1"] > Info > Durata').text();
+
+        $("#art span,#art1").html(compositore);
+        $("#tit span,#tit1").html(titolo);
+        // Если переменная movimenti с указанием частей не пустая
+        if (movimenti !== "") {
+          $("#mov").css("display", "block");
+          $("#mov span").html(movimenti);
+        } else {
+          $("#mov").css("display", "none");
+        }
+        $("#int span").html(interprete);
+        $("#dur span").html(durata);
+
+        $("#art-next span").html(compositore_next);
+        $("#tit-next span").html(titolo_next);
+        // Если переменная movimenti_next с указанием частей не пустая
+        if (movimenti_next !== "") {
+          $("#mov-next").css("display", "block");
+          $("#mov-next span").html(movimenti_next);
+        } else {
+          $("#mov-next").css("display", "none");
+        }
+        $("#int-next span").html(interprete_next);
+        $("#dur-next span").html(durata_next);
+      }
+    });
+    timer = setTimeout(load, 15000);
+  }
+
   playlist.on("click", "li", function() {
     playlist.find(".current").removeClass("current");
     $(this).addClass("current");
@@ -19,55 +68,6 @@ $(function() {
     $("#pl").show("fast");
     audio.play();
     $(".btn-info").stop(1, 1).fadeIn();
-
-    function load() {
-      $.ajax({
-        url: currentPlayer,
-        dataType: 'xml',
-        cache: false,
-        type: 'POST',
-        error: function() {},
-        success: function(data) {
-          var xml_node = $('NowPlaying', data);
-          var compositore = xml_node.find('NP[Id="Current"] > Info > Artista').text();
-          var titolo = xml_node.find('NP[Id="Current"] > Info > Titolo').text();
-          var movimenti = xml_node.find('NP[Id="Current"] > Info > Movimenti').text();
-          var interprete = xml_node.find('NP[Id="Current"] > Info > Interpreti').text();
-          var durata = xml_node.find('NP[Id="Current"] > Info > Durata').text();
-
-          var compositore_next = xml_node.find('NP[Id="Next1"] > Info > Artista').text();
-          var titolo_next = xml_node.find('NP[Id="Next1"] > Info > Titolo').text();
-          var movimenti_next = xml_node.find('NP[Id="Next1"] > Info > Movimenti').text();
-          var interprete_next = xml_node.find('NP[Id="Next1"] > Info > Interpreti').text()
-          var durata_next = xml_node.find('NP[Id="Next1"] > Info > Durata').text();
-
-          $("#art span,#art1").html(compositore);
-          $("#tit span,#tit1").html(titolo);
-          // Если переменная movimenti с указанием частей не пустая
-          if (movimenti !== "") {
-            $("#mov").css("display", "block");
-            $("#mov span").html(movimenti);
-          } else {
-            $("#mov").css("display", "none");
-          }
-          $("#int span").html(interprete);
-          $("#dur span").html(durata);
-
-          $("#art-next span").html(compositore_next);
-          $("#tit-next span").html(titolo_next);
-          // Если переменная movimenti_next с указанием частей не пустая
-          if (movimenti_next !== "") {
-            $("#mov-next").css("display", "block");
-            $("#mov-next span").html(movimenti_next);
-          } else {
-            $("#mov-next").css("display", "none");
-          }
-          $("#int-next span").html(interprete_next);
-          $("#dur-next span").html(durata_next);
-        }
-      });
-      timer = setTimeout(load, 15000);
-    }
     load();
   });
 
