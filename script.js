@@ -4,11 +4,10 @@ $(function() {
   var timer;
 
   $(".value").text($("#volumeSlider").val());
-  $("#volumeSlider").change(function() {
+  $("#volumeSlider").on("input", function() {
     var volume = $(this).val();
     audio.volume = volume;
-    $(this).attr("value", volume);
-    $(".value").html(volume);
+    $(".value").text(volume);
   });
 
   function load() {
