@@ -3,12 +3,24 @@ $(function() {
   var playlist = $("#playlist");
   var timer;
 
-  $(".value").text($("#volumeSlider").val());
-  $("#volumeSlider").on("input", function() {
-    var volume = $(this).val();
+  function updateVolume() {
+    const volume = $("#volumeSlider").val();
     audio.volume = volume;
     $(".value").text(volume);
-  });
+
+    localStorage.setItem('playerVolume', volume);
+  }
+
+  const savedVolume = localStorage.getItem('playerVolume');
+  if (savedVolume !== null) {
+    $("#volumeSlider").val(savedVolume);
+    audio.volume = savedVolume;
+    $(".value").text(savedVolume);
+  } else {
+    updateVolume();
+  }
+
+  $('#volumeSlider').on('input', updateVolume);
 
   function load() {
     $.ajax({
